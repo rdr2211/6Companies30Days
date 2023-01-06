@@ -51,7 +51,7 @@ public:
 
             for(auto i : mp){
                 if(i.second > 1){
-                    count += i.second * (i.second - 1);
+                    count += i.second * (i.second - 1); // nP2
                 }
             }
         }
