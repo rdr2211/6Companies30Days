@@ -45,12 +45,8 @@ public:
         int n = fruits.size();
         map<int, int> mp;
         map<int, int> :: iterator it;
-        //vector<int> v;
         for(auto i : fruits){
             if(mp.size() == 2) break;
-            if(mp.find(i) == mp.end()){
-                //v.push_back(i);
-            }
             mp[i]++;
         }
         
