@@ -55,6 +55,79 @@ public:
     }
 };
 
+// Second using uniform_real_distribution
+class Solution {
+    double radius;
+    double x_center;
+    double y_center;
+public:
+    Solution(double radius, double x_center, double y_center) {
+        this -> radius = radius;
+        this -> x_center = x_center;
+        this -> y_center = y_center;
+    }
+    /*
+    Here I learned how to generate random number in double number and apply sin and cos concept using c++ language
+    */
+    double dist(double x_r, double y_r){
+        return (x_center - x_r)*(x_center - x_r) + (y_center - y_r)*(y_center - y_r);
+    }
+    
+    vector<double> randPoint() {
+        vector<double> ans(2, 0);
+        double x_r = 0, y_r = 0;
+
+        random_device rd;
+        default_random_engine re(rd());
+
+        uniform_real_distribution<double> x_unif(x_center - radius, x_center + radius);
+        uniform_real_distribution<double> y_unif(y_center - radius, y_center + radius);
+
+        bool flag = false;
+        while(!flag){
+            x_r = x_unif(re);
+            y_r = y_unif(re);
+
+            if(dist(x_r, y_r) < radius * radius) flag = true;
+            ans[0] = x_r; ans[1] = y_r;
+        }
+        return ans;
+    }
+};
+
+// Method third using rand() function
+class Solution {
+    double radius;
+    double x_center;
+    double y_center;
+public:
+    Solution(double radius, double x_center, double y_center) {
+        this -> radius = radius;
+        this -> x_center = x_center;
+        this -> y_center = y_center;
+    }
+    /*
+    Here I learned how to generate random number in double number and apply sin and cos concept using c++ language
+    */
+    double dist(double x_r, double y_r){
+        return (x_center - x_r)*(x_center - x_r) + (y_center - y_r)*(y_center - y_r);
+    }
+    vector<double> randPoint() {
+        vector<double> ans(2, 0);
+        double x_r = 0, y_r = 0;
+
+        bool flag = false;
+        while(!flag){
+            x_r = ((double)rand() / RAND_MAX * (2*radius)) + x_center - radius;
+            y_r = ((double)rand() / RAND_MAX * (2*radius)) + y_center - radius;
+
+            if(dist(x_r, y_r) < radius * radius) flag = true;
+            ans[0] = x_r; ans[1] = y_r;
+        }
+        return ans;
+    }
+};
+
 /**
  * Your Solution object will be instantiated and called as such:
  * Solution* obj = new Solution(radius, x_center, y_center);
